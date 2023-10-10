@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" ></script>
+     <style>
+        .but{
+            background-color: green;
+            width:120px;
+            color:white;
+            height: 30px;  
+        }
+        .but:hover{
+            background-color:blue;
+        }
+     </style>
+</head>
+<body>
+    <div class="row">
+        <h3 id="delereg">Delegate Registration</h3>
+        <p1 id="para"><b>How Many Delegate to Registration.</b></p1><br><br>
+        <select name="noofdelegates" id="noofdelegates" style="width: 60%;">
+            <option value="">Select Number of Delegates to Register..... </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div id="kausain"></div>
+    <div id="showTotal"></div>
+    <div id="kausain2"></div>
+    <div id="kausain3"></div>
+    <div id="bill"></div><br>
+    <button onclick="total()" class="but">showGrand Total</button>
+    <button class="but" onclick="myFunction()">Next</button>
+    <button id="show" class="but">Show</button>
+    <script>
+        const arr1=[]
+        const arr2=[]
+        const arr3=[]
+        const arr4=[]
+        const PriceArray=[]
+        let number =document.getElementById("noofdelegates")
+         document.getElementById("noofdelegates").addEventListener("change", function(){
+            for(let i=1;i<=number.value; i++){
+                document.getElementById("kausain").innerHTML +=`<form style="color:black;border:1px solid black;width:60%;background-color:gainsboro;"> 
+     <div class="row" id="mainform">
+    <div class="row" id="drd"><h2>REGISTRATION DETAILS -${i} </h2> </div>
+    <div class="row" id="note"><h3>Please enter all details of the delegate that you wish to register</h3></div>
+
+   </div class="row">
+      <div class="col-4">
+         <label for="" class="label">Salutation:</label><br>
+          <select name="" id="" class="input salutation" style="width:33%;">
+             <option value="">Please Select...</option>
+             <option value="Mr.">Mr.</option>
+             <option value="Dr.">Dr.</option>
+             <option value="Mrs.">Mrs.</option>
+             <option value="Er.">Er.</option>
+         </select><br><br>
+      </div>
+      <div class"col-4">
+          <label for="" class="label">Delegates First Name:</label>
+          <input type="text" class="input fname" placeholder="Enter first name"style="width:20%;"><br><br>
+      </div>
+      <div class"col-4">
+            <label for="" class="label">Delegates Last Name:</label>
+           <input type="text" class="input lname" placeholder="Enter last name"style="width:20%;"><br><br>
+      </div>
+    </div>
+ <div class="row">
+      <div class"col-4">
+          <label for="" class="label">Delegates Email:</label>
+          <input type="text" class="input email" placeholder="Enter the Email-Id"style="width:22.5%;"><br><br>
+      </div>
+      <div class"col-4">
+            <label for="" class="label">Delegates Telephone Number:</label>
+           <input type="number" id="" class="input tno" placeholder="Enter Telephone Number:"style="width:15.5%;"><br><br>
+      </div> 
+      <div class"col-4">
+            <label for="" class="label">Job Title: </label>
+            <input type="text" class="input jtitle" placeholder="Enter Job Title:"style="width:26.5%;"><br><br>
+      </div> 
+ </div>
+<div class="row">
+       <div class"col-4">
+        <label for="" class="label">Delegates Password Number:</label>
+        <input type="password" class="input pwd" placeholder="Enter your Password Number:"style="width:15.7%;"><br><br>
+      </div>
+  <div class="col-4"></div>
+  <div class="col-4"></div>  
+</div> 
+<div class="row">
+    <h3 id="pf">PRODUCT FEES:</h3>
+    <div class="col-4"><input type="checkbox" class="checkbox" onchange="setPrice${i}(event)" name="" value="5900" id=""><label>All Access (Delegate)</label></div>
+    <div class="col-4"><p class="price">USD 5900</p></div>
+</div> 
+<div class="row">
+    <div class="col-4"><input type="checkbox" class="checkbox" onchange="setPrice${i}(event)" value="5100" id=""><label>Startegic Conference (Delegate)</label></div>
+    <div class="col-4"></div>
+    <div class="col-4"><p class="price">USD 5100</p></div>
+</div> 
+<div class="row">
+    <div class="col-4"><input type="checkbox" class="checkbox" onchange="setPrice${i}(event)" value="1858" id=""><label>Technical Conference Pass-4 days (Delegate)</label></div>
+    <div class="col-4"></div>
+    <div class="col-4"><p class="price">USD 1858</p></div>
+</div> 
+<div class="row">
+    <div class="col-4"><input type="checkbox" class="checkbox" onchange="setPrice${i}(event)"  value="1450" id=""><label> Technical Conference pass-2 days(Delegate)</label></div>
+    <div class="col-4"></div>
+    <div class="col-4"><p class="price">USD 1450</p></div>
+</div> 
+<div class="row">
+    <div class="col-4"><input type="checkbox" class="checkbox" onchange="setPrice${i}(event)"  value="1100" id=""><label>Downstrem Technical conference Pass (Delegate)</label></div>
+    <div class="col-4"></div>
+    <div class="col-4"><p class="price">USD 1100</p></div>
+ </div><form>  
+ `
+     }
+         })
+      function setPrice1(event){
+        if(event.target.checked== true){
+            arr1.push(event.target.value);
+        }
+      }
+      function setPrice2(event){
+        if(event.target.checked== true){
+            arr2.push(event.target.value);
+        }
+      }
+      function setPrice3(event){
+        if(event.target.checked== true){
+            arr3.push(event.target.value);
+        }
+      }
+      function setPrice4(event){
+        if(event.target.checked== true){
+            arr4.push(event.target.value);
+        }
+      }
+      function total(){
+        let sum1= 0;
+        for(let i= 0; i <arr1.length;i++){
+            sum1=sum1 + Number(arr1[i]);
+        }
+        let pa1=sum1;
+        PriceArray.push(pa1);
+        let sum2= 0;
+        for(let i= 0; i <arr2.length;i++){
+            sum2=sum2 + Number(arr2[i]);
+        }
+        let pa2=sum2;
+        PriceArray.push(pa2);
+        let sum3= 0;
+        for(let i= 0; i <arr3.length;i++){
+            sum3=sum3 + Number(arr3[i]);
+        }
+        let pa3=sum3;
+        PriceArray.push(pa3);
+        let sum4= 0;
+        for(let i= 0; i <arr4.length;i++){
+            sum4=sum4 + Number(arr4[i]);
+        }
+        let pa4=sum4;
+        PriceArray.push(pa4);
+        // let total=sum1+sum2+sum3+sum4;
+        // console.log(total);
+        let total =0;
+        for(let i=0; i<PriceArray.length;i++){
+            total +=PriceArray[i];
+        }
+        document.getElementById("showTotal").innerHTML= `The Grand Total is ${total}`
+        console.log(total)
+      }
+
+      function myFunction() {
+        location.replace("Test.html")
+  }
+    </script>
+</body>
+</html>
